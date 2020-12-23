@@ -25,11 +25,18 @@
         }
     },
     "scripts": {
+        "build": [
+            "@check-cs",
+            "@phpunit"
+        ],
         "check-cs": [
             "php-cs-fixer fix --dry-run --diff"
         ],
         "fix-cs": [
             "php-cs-fixer fix"
+        ],
+        "phpunit": [
+            "phpunit"
         ]
     }
 }
