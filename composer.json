@@ -3,7 +3,9 @@
     "description": "PHP Runtime class provides methods to get total and free memoryy",
     "type": "library",
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "php-mock/php-mock-phpunit": "^2.6"
     },
     "license": "MIT",
     "authors": [
@@ -12,5 +14,22 @@
             "email": "arkadiusz.kondas@gmail.com"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-4": {
+            "Akondas\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Akondas\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check-cs": [
+            "php-cs-fixer fix --dry-run --diff"
+        ],
+        "fix-cs": [
+            "php-cs-fixer fix"
+        ]
+    }
 }
