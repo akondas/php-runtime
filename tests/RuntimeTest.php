@@ -34,6 +34,9 @@ class RuntimeTest extends TestCase
         self::assertTrue($runtime->totalMemory() > 0);
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testThrowExceptionWhenThereIsNoPossibilityToDetermine(): void
     {
         $this->getFunctionMock('Akondas', 'exec')->expects($this->once())->willReturn(false);
@@ -44,6 +47,9 @@ class RuntimeTest extends TestCase
         (new Runtime())->totalMemory();
     }
 
+    /**
+     * @runInSeparateProcess
+     */
     public function testThrowExceptionWhenSomethingGoesWrong(): void
     {
         $this->getFunctionMock('Akondas', 'exec')->expects($this->once())->willThrowException(new \ErrorException());
@@ -52,6 +58,29 @@ class RuntimeTest extends TestCase
         $this->expectExceptionMessage('No possibility to determine memory limits');
 
         (new Runtime())->totalMemory();
+    }
+
+    public function testFreeMemory(): void
+    {
+        self::assertTrue((new Runtime())->freeMemory() > 0);
+    }
+
+    public function testAvailableProcessors(): void
+    {
+        self::assertTrue((new Runtime())->availableProcessors() > 0);
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testThrowExceptionWhenSomethingGoesWrongWithAvailableProcessors(): void
+    {
+        $this->getFunctionMock('Akondas', 'exec')->expects($this->once())->willThrowException(new \ErrorException());
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('No possibility to determine available processors');
+
+        (new Runtime())->availableProcessors();
     }
 
     /**

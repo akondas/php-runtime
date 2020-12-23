@@ -21,6 +21,26 @@ class Runtime
         throw new \RuntimeException('No possibility to determine memory limits');
     }
 
+    public function freeMemory(): int
+    {
+        return $this->totalMemory() - memory_get_usage();
+    }
+
+    public function availableProcessors(): int
+    {
+        try {
+            $cores = exec('nproc');
+        } catch (\Throwable $e) {
+            $cores = false;
+        }
+
+        if (is_numeric($cores)) {
+            return (int) $cores;
+        }
+
+        throw new \RuntimeException('No possibility to determine available processors');
+    }
+
     private function getMemoryFromIniString(string $iniLimit): int
     {
         $unit = strtolower(substr($iniLimit, -1, 1));
