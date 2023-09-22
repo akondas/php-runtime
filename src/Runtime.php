@@ -55,10 +55,7 @@ class Runtime
         return (int) $iniLimit;
     }
 
-    /**
-     * @return string|bool
-     */
-    private function getMemoryFromSystem()
+    private function getMemoryFromSystem(): bool|string
     {
         try {
             return exec('awk \'/MemTotal/ {print $2}\' /proc/meminfo');
