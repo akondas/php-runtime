@@ -46,7 +46,10 @@ class Runtime
         $unit = strtolower(substr($iniLimit, -1, 1));
         $units = [1 => 'k', 'm', 'g'];
         if (in_array($unit, $units, true)) {
-            return (int) $iniLimit * pow(1024, array_search($unit, $units, true));
+            /** @var int $exponent */
+            $exponent = array_search($unit, $units, true);
+
+            return (int) $iniLimit * pow(1024, $exponent);
         }
 
         return (int) $iniLimit;

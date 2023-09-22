@@ -85,6 +85,8 @@ class RuntimeTest extends TestCase
      *
      * The available options are K (for Kilobytes), M (for Megabytes) and G (for Gigabytes;
      * available since PHP 5.1.0), and are all case-insensitive. Anything else assumes bytes.
+     *
+     * @return array<int, array<int, int|string>>
      */
     public function initConfigurationProvider(): array
     {
