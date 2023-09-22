@@ -4,7 +4,6 @@
 /.codecov.yml export-ignore
 /.gitattributes export-ignore
 /.gitignore export-ignore
-/.php_cs.dist export-ignore
-/buddy.yml export-ignore
-/phpstan.neon export-ignore
+/.php-cs-fixer.dist.php export-ignore
 /phpunit.xml export-ignore
+/.github export-ignore
