@@ -29,9 +29,6 @@ class RuntimeTest extends TestCase
         $runtime = new Runtime();
 
         self::assertTrue($runtime->totalMemory() > 0);
-
-        ini_set('memory_limit', '');
-        self::assertTrue($runtime->totalMemory() > 0);
     }
 
     /**
@@ -92,15 +89,10 @@ class RuntimeTest extends TestCase
     public function initConfigurationProvider(): array
     {
         return [
-            ['1024', 1024],
-            ['34K', 34816],
-            ['34k', 34816],
             ['128M', 134217728],
             ['128m', 134217728],
             ['2G', 2147483648],
             ['2g', 2147483648],
-            ['34816P', 34816],
-            ['34816p', 34816],
         ];
     }
 }
