@@ -1,7 +1,7 @@
 {
     "name": "akondas/php-runtime",
     "type": "library",
-    "description": "PHP Runtime class provides methods to get total and free memoryy",
+    "description": "PHP Runtime class provides methods to get total and free memory",
     "license": "MIT",
     "authors": [
         {
