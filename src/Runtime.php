@@ -6,6 +6,9 @@ namespace Akondas;
 
 class Runtime
 {
+    /**
+     * @throws \RuntimeException
+     */
     public function totalMemory(): int
     {
         $iniLimit = ini_get('memory_limit');
@@ -21,11 +24,17 @@ class Runtime
         throw new \RuntimeException('No possibility to determine memory limits');
     }
 
+    /**
+     * @throws \RuntimeException
+     */
     public function freeMemory(): int
     {
         return $this->totalMemory() - memory_get_usage();
     }
 
+    /**
+     * @throws \RuntimeException
+     */
     public function availableProcessors(): int
     {
         try {
@@ -59,7 +68,7 @@ class Runtime
     {
         try {
             return exec('awk \'/MemTotal/ {print $2}\' /proc/meminfo');
-        } catch (\Throwable $e) {
+        } catch (\Throwable) {
             return false;
         }
     }
