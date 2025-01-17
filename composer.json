@@ -9,6 +9,9 @@
             "email": "arkadiusz.kondas@gmail.com"
         }
     ],
+    "require": {
+        "php": "^8.3"
+    },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.58",
         "php-mock/php-mock-phpunit": "^2.10",
@@ -27,7 +30,7 @@
     },
     "config": {
         "platform": {
-            "php": "8.0"
+            "php": "8.3"
         }
     },
     "scripts": {
