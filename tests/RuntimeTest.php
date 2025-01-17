@@ -6,15 +6,15 @@ namespace Akondas\Tests;
 
 use Akondas\Runtime;
 use phpmock\phpunit\PHPMock;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 
 final class RuntimeTest extends TestCase
 {
     use PHPMock;
 
-    /**
-     * @dataProvider initConfigurationProvider
-     */
+    #[DataProvider('initConfigurationProvider')]
     public function testFreeMemoryWhenSet(string $value, int $expected): void
     {
         ini_set('memory_limit', $value);
@@ -31,9 +31,7 @@ final class RuntimeTest extends TestCase
         self::assertTrue($runtime->totalMemory() > 0);
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testThrowExceptionWhenThereIsNoPossibilityToDetermine(): void
     {
         $this->getFunctionMock('Akondas', 'exec')->expects($this->once())->willReturn(false);
@@ -44,9 +42,7 @@ final class RuntimeTest extends TestCase
         (new Runtime())->totalMemory();
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testThrowExceptionWhenSomethingGoesWrong(): void
     {
         $this->getFunctionMock('Akondas', 'exec')->expects($this->once())->willThrowException(new \ErrorException());
@@ -67,9 +63,7 @@ final class RuntimeTest extends TestCase
         self::assertTrue((new Runtime())->availableProcessors() > 0);
     }
 
-    /**
-     * @runInSeparateProcess
-     */
+    #[RunInSeparateProcess]
     public function testThrowExceptionWhenSomethingGoesWrongWithAvailableProcessors(): void
     {
         $this->getFunctionMock('Akondas', 'exec')->expects($this->once())->willThrowException(new \ErrorException());
@@ -88,7 +82,7 @@ final class RuntimeTest extends TestCase
      *
      * @return array<int, array<int, int|string>>
      */
-    public function initConfigurationProvider(): array
+    public static function initConfigurationProvider(): array
     {
         return [
             ['128M', 134217728],
