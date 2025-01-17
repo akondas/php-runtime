@@ -8,7 +8,7 @@ use Akondas\Runtime;
 use phpmock\phpunit\PHPMock;
 use PHPUnit\Framework\TestCase;
 
-class RuntimeTest extends TestCase
+final class RuntimeTest extends TestCase
 {
     use PHPMock;
 

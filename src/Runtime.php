@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Akondas;
 
-class Runtime
+final readonly class Runtime
 {
     /**
      * @throws \RuntimeException
@@ -39,7 +39,7 @@ class Runtime
     {
         try {
             $cores = exec('nproc');
-        } catch (\Throwable $e) {
+        } catch (\Throwable) {
             $cores = false;
         }
 
